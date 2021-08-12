@@ -1,0 +1,75 @@
+﻿@model IEnumerable<mvcIdentity.Models.Course>
+
+@{
+    ViewBag.Title = "Courses";
+}
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">Courses</h4>
+                        <p class="category">All Courses table</p>
+                    </div>
+                    <div class="content table-responsive table-full-width">
+                        <div style="text-align: end;padding-right: 8%;">
+                            @Html.ActionLink("Create", "Create", null, new { @class = "btn btn-info" })
+                        </div>
+                        <table class="table table-striped table-hover">
+
+                            <thead>
+
+                                <tr>
+                                    <th>@Html.DisplayNameFor(model => model.Crs_Name)</th>
+                                    <th>@Html.DisplayNameFor(model => model.Crs_Description)</th>
+                                    <th>@Html.DisplayNameFor(model => model.Crs_Duration)</th>
+                                    <th>@Html.DisplayNameFor(model => model.Crs_Price)</th>
+                                    <th>@Html.DisplayNameFor(model => model.Topic.Top_Name)</th>
+                                    <th>@Html.DisplayNameFor(model => model.Crs_Photo)</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                <tr>
+                                    <td>@Html.DisplayFor(modelItem => item.Crs_Name)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Crs_Description)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Crs_Duration)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Crs_Price)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Topic.Top_Name)</td>
+                                    @if (item.Crs_Photo == null)
+                                    {
+                                        <td>
+                                            <div class="image-upload" style="width: 90px;">
+                                                <img src="~/Attachs/Course/upload-photo-icon-21.jpg" style="width: 87%;margin-left: 15px;" />
+                                            </div>
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td>
+                                            <div class="image-upload" style="width: 90px;">
+                                                <img src="~/Attachs/Course/@item.Crs_Photo" style="width: 87%;margin-left: 15px;" />
+                                            </div>
+                                        </td>
+                                    }
+                                    <td>
+
+                                        @Html.ActionLink("Edit", "Edit", new { id = item.Crs_Id }, new { @class = "btn btn-info" }) |
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.Crs_Id }, new { @class = "btn btn-danger", onClick = "return confirm('are you want to delete')" })
+                                    </td>
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+

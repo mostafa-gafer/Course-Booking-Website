@@ -1,0 +1,65 @@
+﻿@model IEnumerable<mvcIdentity.Models.Topic>
+
+@{
+    ViewBag.Title = "Topic";
+}
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">Topics</h4>
+                        <p class="category">All Topic table</p>
+                    </div>
+                    <div class="content table-responsive table-full-width">
+                        <div style="text-align: end;padding-right: 8%;">
+                            @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-info" })
+                        </div>
+                        <table class="table table-striped table-hover">
+
+                            <thead>
+
+                                <tr>
+                                    <th>@Html.DisplayNameFor(model => model.Top_Name)</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                <tr>
+                                    <td>@Html.DisplayFor(modelItem => item.Top_Name)</td>
+                                    <td>
+                                        <div class="image-upload" style="width: 90px;">
+                                            @if (item.Top_Photo == null)
+                                            {
+                                                <img src="~/Attachs/Topic/upload-photo-icon-21.jpg" style="width: 87%;margin-left: 15px;" />
+                                            }
+                                            else
+                                            {
+                                                <img src="~/Attachs/Topic/@item.Top_Photo" style="width: 87%;margin-left: 15px;" />
+                                            }
+                                        </div>
+                                    </td>
+                                    <td style="text-align: end;">
+                                        @Html.ActionLink("Edit", "Edit", new { id = item.Top_Id }, new { @class = "btn btn-info" }) |
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.Top_Id }, new { @class = "btn btn-danger", onClick = "return confirm('are you want to delete')" })
+                                    </td>
+
+
+
+
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+

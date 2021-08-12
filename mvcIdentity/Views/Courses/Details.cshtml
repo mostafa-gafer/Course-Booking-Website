@@ -1,0 +1,146 @@
+﻿@model mvcIdentity.Models.Course
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<style>
+    .action{
+    width: 34%;
+    margin-top: 15px;
+    border-radius: 16px;
+    text-align: center;
+    background-color: #f9f6f6;
+    padding: 10px;
+    border: 1px solid #b6eaff;
+    }
+   .action a {
+        color: #68B3C8;
+        font-size: 21px;
+        font-weight: bold;
+
+    }
+</style>
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col-lg-8 col-md-7">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title"> @Html.DisplayNameFor(model => model.Crs_Name)</h4>
+                        <div>
+                            @{
+                                if (ViewBag.result != null)
+                                {
+                                    <h3>@ViewBag.result</h3>
+                                }
+                            }
+                        </div>
+
+                        <div class="content">
+
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <div class="form-group">
+                                        @Html.DisplayFor(model => model.Topic.Top_Name)
+                                        <div class="col-md-6">
+                                            @Html.DisplayNameFor(model => model.Topic.Top_Name)
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <div class="form-group">
+
+                                        @Html.DisplayFor(model => model.Crs_Name)
+                                        <div class="col-md-6">
+                                            @Html.DisplayNameFor(model => model.Crs_Name)
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <div class="form-group">
+                                        @Html.Raw(HttpUtility.HtmlDecode(Html.DisplayFor(model => model.Crs_Description).ToString()))
+
+                                        <div class="col-md-6">
+                                            @*@Html.DisplayFor(model => model.Crs_Description)*@
+                                            @Html.DisplayNameFor(model => model.Crs_Description)
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <div class="form-group">
+
+                                        @Html.DisplayFor(model => model.Crs_Duration)
+                                        <div class="col-md-6">
+                                            @Html.DisplayNameFor(model => model.Crs_Duration)
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <div class="form-group">
+
+                                        @Html.DisplayFor(model => model.Crs_Price)
+                                        <div class="col-md-6">
+                                            @Html.DisplayNameFor(model => model.Crs_Price)
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="clearfix"></div>
+
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-4 col-md-10">
+                                <div class="action">
+                                    @Ajax.ActionLink("Enroll",
+                                     "Apply",
+                                     "Home",
+                                     new AjaxOptions
+                                     {
+                                         UpdateTargetId = "data", // <-- DOM element ID to update
+                                         HttpMethod = "POST", // <-- HTTP method,
+                                         InsertionMode = InsertionMode.Replace // <-- Replace the content of DOM element
+
+                                     })
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div style="padding:20px;">
+                                    @Html.ActionLink("Back to List", "Index", "Home")
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div id="data" style="padding:20px;">
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+@section scripts{
+    @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.min.js")
+    
+
+}

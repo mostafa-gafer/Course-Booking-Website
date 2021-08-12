@@ -1,0 +1,49 @@
+﻿@model IList<mvcIdentity.Models.coursesViewModel>
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+               
+                <div class="card" style="padding-top:25px;">
+                    <div style="text-align: end;padding-right: 8%;">
+                        @Html.ActionLink("Create", "Create", "Courses", null, new { @class = "btn btn-info" })
+                    </div>
+                    @foreach (var gr in Model)
+                    {
+                        <div class="header">
+                            <h4 class="title">@gr.courseTitle</h4>
+
+                        </div>
+                        <div class="content table-responsive table-full-width" style="padding: 40px;">
+                            <table class="table table-striped table-bordered table-hover">
+
+                                <thead>
+
+                                    <tr>
+                                        <th>Student Name</th>
+                                        <th>ApplyDate</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in gr.items)
+                                    {
+                                        <tr>
+                                            <td>@item.user.UserName</td>
+                                            <td>@item.ApplyDate</td>
+
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+
+                        </div>
+                    }
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+

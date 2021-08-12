@@ -1,0 +1,80 @@
+﻿@model IEnumerable<mvcIdentity.Models.Course>
+    <style>
+            .con {
+                padding-top: 0 !important;
+            }
+
+            .con .img-con {
+                height: 140px;
+            }
+
+            .con .img-con > img {
+                    width: 100%;
+                    height: 100%;
+            }
+           .con .stats h3 {
+                margin: 4px 0 2px;
+                color:black;
+            }
+           .car{
+               box-shadow:none !important;
+           }
+
+    </style>
+
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card ">
+            <div class="header">
+                <h3>Courses</h3>
+                <p class="category">All Courses List</p>
+            </div>
+            <div class="content">
+
+                <div class="row">
+                    @foreach (var item in Model)
+                    {
+                         <div class="col-lg-3 col-sm-6">
+                             <a href="/Courses/Details/@item.Crs_Id">
+                                 <div class="card car">
+                                     <div class="content con">
+                                         <div class="row img-con">
+                                             @if (item.Crs_Photo == null)
+                                             {
+                                                 <img src="~/Images/background.jpg" />
+
+                                             }
+                                             else
+                                             {
+                                                 <img src="~/Attachs/Course/@item.Crs_Photo" />
+                                             }
+                                         </div>
+                                         <div class="footer">
+                                             <div class="stats">
+                                                 <h3>@item.Crs_Name</h3>
+                                                 <p>@item.Crs_Description</p>
+                                                 @if (item.Crs_Price == 0)
+                                                 {
+                                                     <p>$ Free</p>
+                                                 }
+                                                 else
+                                                 {
+                                             <p>$ @item.Crs_Price</p>
+                                         }
+
+                                             </div>
+                                         </div>
+                                     </div>
+                                 </div>
+                             </a>
+                        </div>
+                    }
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
